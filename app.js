@@ -17,11 +17,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/*', function(req, res, next) {
-  const { path, body, baseUrl, route } = req
-  console.log("baseUrl", baseUrl)
-  console.log("route", route)
+  const { path, body, query } = req
   console.log("path", path)
   console.log("body", body)
+  console.log("query", query)
   const json = {
     schemas: ["urn:ietf:params:scim:api:messages:2.0:ListResponse"],
     totalResults: 2,
