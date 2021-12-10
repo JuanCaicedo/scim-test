@@ -40,6 +40,56 @@ app.get("/Users", (req, res, next) => {
   res.status(200).json(json);
 });
 
+app.get("/Users/:userId", (req, res, next) => {
+  const { path, body, query, params } = req;
+  console.log("IN GET USERS ID ENDPOINT");
+  console.log("path", path);
+  console.log("body", body);
+  console.log("query", query);
+  console.log("params", params);
+  const json = {
+    schemas: ["urn:ietf:params:scim:schemas:core:2.0:User"],
+    id: "lololol",
+    userName: "juan+ssotest12.06.21.5@calm.com",
+    name: {
+      givenName: "Another",
+      middleName: "",
+      familyName: "User",
+    },
+    active: true,
+    groups: [],
+    meta: {
+      resourceType: "User",
+    },
+  };
+  res.status(200).json(json);
+});
+
+app.put("/Users/:userId", (req, res, next) => {
+  const { path, body, query, params } = req;
+  console.log("IN PUT USERS ID ENDPOINT");
+  console.log("path", path);
+  console.log("body", body);
+  console.log("query", query);
+  console.log("params", params);
+  const json = {
+    schemas: ["urn:ietf:params:scim:schemas:core:2.0:User"],
+    id: "lololol",
+    userName: "juan+ssotest12.06.21.5@calm.com",
+    name: {
+      givenName: "Another",
+      middleName: "",
+      familyName: "User",
+    },
+    active: true,
+    groups: [],
+    meta: {
+      resourceType: "User",
+    },
+  };
+  res.status(200).json(json);
+});
+
 app.put("/Users", (req, res, next) => {
   const { path, body, query } = req;
   console.log("IN PUT USERS ENDPOINT");
