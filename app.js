@@ -16,7 +16,56 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
+app.get("/Users", (req, res, next) => {
+  const { path, body, query } = req;
+  console.log("IN GET USERS ENDPOINT");
+  console.log("path", path);
+  console.log("body", body);
+  console.log("query", query);
+  const json = {
+    schemas: ["urn:ietf:params:scim:schemas:core:2.0:User"],
+    id: "lololol",
+    userName: "juan+ssotest12.06.21.5@calm.com",
+    name: {
+      givenName: "Another",
+      middleName: "",
+      familyName: "User",
+    },
+    active: true,
+    groups: [],
+    meta: {
+      resourceType: "User",
+    },
+  };
+  res.status(200).json(json);
+});
+
+app.put("/Users", (req, res, next) => {
+  const { path, body, query } = req;
+  console.log("IN PUT USERS ENDPOINT");
+  console.log("path", path);
+  console.log("body", body);
+  console.log("query", query);
+  const json = {
+    schemas: ["urn:ietf:params:scim:schemas:core:2.0:User"],
+    id: "lololol",
+    userName: "juan+ssotest12.06.21.5@calm.com",
+    name: {
+      givenName: "Another",
+      middleName: "",
+      familyName: "User",
+    },
+    active: true,
+    groups: [],
+    meta: {
+      resourceType: "User",
+    },
+  };
+  res.status(200).json(json);
+});
+
 app.get("/*", function (req, res, next) {
+  console.log("IN GENERIC GET ENDPOINT");
   const { path, body, query } = req;
   console.log("path", path);
   console.log("body", body);
