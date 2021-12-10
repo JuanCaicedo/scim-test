@@ -26,14 +26,19 @@ app.get("/*", function (req, res, next) {
     totalResults: 2,
     Resources: [
       {
-        id: "c3a26dd3-27a0-4dec-a2ac-ce211e105f97",
-        title: "Assistant VP",
-        userName: "andrew.lau@calm.com",
-      },
-      {
+        schemas: ["urn:ietf:params:scim:schemas:core:2.0:User"],
         id: "lololol",
-        title: "juan",
         userName: "juan+ssotest12.06.21.5@calm.com",
+        name: {
+          givenName: "Another",
+          middleName: "",
+          familyName: "User",
+        },
+        active: true,
+        groups: [],
+        meta: {
+          resourceType: "User",
+        },
       },
     ],
   };
