@@ -24,7 +24,7 @@ app.get("/Users", (req, res, next) => {
   console.log("query", query);
   const json = {
     schemas: ["urn:ietf:params:scim:schemas:core:2.0:User"],
-    id: "lololol",
+    id: "juan+ssotest12.06.21.5@calm.com",
     userName: "juan+ssotest12.06.21.5@calm.com",
     name: {
       givenName: "Another",
@@ -49,7 +49,7 @@ app.get("/Users/:userId", (req, res, next) => {
   console.log("params", params);
   const json = {
     schemas: ["urn:ietf:params:scim:schemas:core:2.0:User"],
-    id: "lololol",
+    id: "juan+ssotest12.06.21.5@calm.com",
     userName: "juan+ssotest12.06.21.5@calm.com",
     name: {
       givenName: "Another",
@@ -74,7 +74,7 @@ app.put("/Users/:userId", (req, res, next) => {
   console.log("params", params);
   const json = {
     schemas: ["urn:ietf:params:scim:schemas:core:2.0:User"],
-    id: "lololol",
+    id: "juan+ssotest12.06.21.5@calm.com",
     userName: "juan+ssotest12.06.21.5@calm.com",
     name: {
       givenName: "Another",
@@ -98,7 +98,7 @@ app.put("/Users", (req, res, next) => {
   console.log("query", query);
   const json = {
     schemas: ["urn:ietf:params:scim:schemas:core:2.0:User"],
-    id: "lololol",
+    id: "juan+ssotest12.06.21.5@calm.com",
     userName: "juan+ssotest12.06.21.5@calm.com",
     name: {
       givenName: "Another",
