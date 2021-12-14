@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.get(["/Users", "/Users/:userId"], (req, res, next) => {
+app.get(["/Users", "/Users/:userId"], (req, res) => {
   const { path, body, query, params } = req;
   console.log("IN GET USERS ID ENDPOINT");
   console.log("path", path);
@@ -42,8 +42,11 @@ app.get(["/Users", "/Users/:userId"], (req, res, next) => {
     return res.status(200).json(json);
   }
 
-  if (query?.filter !== 'userName eq "juan+ssotest12.06.21.5@calm.com"') {
-    return res.status(404);
+  if (
+    query?.filter &&
+    query.filter !== 'userName eq "juan+ssotest12.06.21.5@calm.com"'
+  ) {
+    return res.status(404).send();
   }
 
   const json = {
