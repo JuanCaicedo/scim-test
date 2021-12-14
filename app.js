@@ -22,6 +22,9 @@ app.get("/Users", (req, res, next) => {
   console.log("path", path);
   console.log("body", body);
   console.log("query", query);
+  if (query?.filter !== 'userName eq "juan+ssotest12.06.21.5@calm.com"') {
+    return res.status(404);
+  }
   const json = {
     schemas: ["urn:ietf:params:scim:api:messages:2.0:ListResponse"],
     totalResults: 1,
