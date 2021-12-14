@@ -131,6 +131,8 @@ app.get("/*", function (req, res, next) {
   const json = {
     schemas: ["urn:ietf:params:scim:api:messages:2.0:ListResponse"],
     totalResults: 2,
+    startIndex: 1,
+    itemsPerPage: 10,
     Resources: [
       {
         schemas: ["urn:ietf:params:scim:schemas:core:2.0:User"],
