@@ -122,37 +122,37 @@ app.put("/Users", (req, res, next) => {
   res.status(200).json(json);
 });
 
-app.get("/*", function (req, res, next) {
-  console.log("IN GENERIC GET ENDPOINT");
-  const { path, body, query } = req;
-  console.log("path", path);
-  console.log("body", body);
-  console.log("query", query);
-  const json = {
-    schemas: ["urn:ietf:params:scim:api:messages:2.0:ListResponse"],
-    totalResults: 25,
-    startIndex: 1,
-    itemsPerPage: 10,
-    Resources: [
-      {
-        schemas: ["urn:ietf:params:scim:schemas:core:2.0:User"],
-        id: "juan+ssotest12.06.21.5@calm.com",
-        userName: "juan+ssotest12.06.21.5@calm.com",
-        name: {
-          givenName: "Another",
-          middleName: "",
-          familyName: "User",
-        },
-        active: true,
-        groups: [],
-        meta: {
-          resourceType: "User",
-        },
-      },
-    ],
-  };
-  res.status(200).json(json);
-});
+// app.get("/*", function (req, res, next) {
+//   console.log("IN GENERIC GET ENDPOINT");
+//   const { path, body, query } = req;
+//   console.log("path", path);
+//   console.log("body", body);
+//   console.log("query", query);
+//   const json = {
+//     schemas: ["urn:ietf:params:scim:api:messages:2.0:ListResponse"],
+//     totalResults: 25,
+//     startIndex: 1,
+//     itemsPerPage: 10,
+//     Resources: [
+//       {
+//         schemas: ["urn:ietf:params:scim:schemas:core:2.0:User"],
+//         id: "juan+ssotest12.06.21.5@calm.com",
+//         userName: "juan+ssotest12.06.21.5@calm.com",
+//         name: {
+//           givenName: "Another",
+//           middleName: "",
+//           familyName: "User",
+//         },
+//         active: true,
+//         groups: [],
+//         meta: {
+//           resourceType: "User",
+//         },
+//       },
+//     ],
+//   };
+//   res.status(200).json(json);
+// });
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
