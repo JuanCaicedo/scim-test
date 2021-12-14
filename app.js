@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.get("/Users/:userId", (req, res, next) => {
+app.get(["/Users", "/Users/:userId"], (req, res, next) => {
   const { path, body, query, params } = req;
   console.log("IN GET USERS ID ENDPOINT");
   console.log("path", path);
