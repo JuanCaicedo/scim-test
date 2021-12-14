@@ -48,7 +48,7 @@ app.get("/Users/:userId", (req, res, next) => {
 
   const json = {
     schemas: ["urn:ietf:params:scim:api:messages:2.0:ListResponse"],
-    totalResults: 1,
+    totalResults: 10,
     startIndex: 1,
     itemsPerPage: 0,
     Resources: [
@@ -130,7 +130,7 @@ app.get("/*", function (req, res, next) {
   console.log("query", query);
   const json = {
     schemas: ["urn:ietf:params:scim:api:messages:2.0:ListResponse"],
-    totalResults: 2,
+    totalResults: 20,
     startIndex: 1,
     itemsPerPage: 10,
     Resources: [
