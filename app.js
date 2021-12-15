@@ -45,7 +45,10 @@ app.get(["/Users", "/Users/:userId"], (req, res) => {
   }
 
   if (params?.userId) {
-    return res.status(404).send();
+    const json = {
+      schemas: ["urn:ietf:params:scim:api:messages:2.0:Error"],
+    };
+    return res.status(404).json(json);
   }
 
   if (
