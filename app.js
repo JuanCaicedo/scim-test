@@ -16,6 +16,23 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
+const user = {
+  schemas: ["urn:ietf:params:scim:schemas:core:2.0:User"],
+  id: "juan+ssotest12.06.21.5@calm.com",
+  userName: "juan+ssotest12.06.21.5@calm.com",
+  name: {
+    givenName: "Another",
+    middleName: "",
+    familyName: "User",
+  },
+  emails: [{ value: "test-email@calm.com" }],
+  active: true,
+  groups: [],
+  meta: {
+    resourceType: "User",
+  },
+};
+
 app.get(["/Users", "/Users/:userId"], (req, res) => {
   const { path, body, query, params } = req;
   console.log("IN GET USERS ID ENDPOINT");
@@ -23,54 +40,35 @@ app.get(["/Users", "/Users/:userId"], (req, res) => {
   console.log("body", body);
   console.log("query", query);
   console.log("params", params);
+  if (params?.userId === user.id) {
+    return res.status(200).json(user);
+  }
+
   if (params?.userId) {
-    const json = {
-      schemas: ["urn:ietf:params:scim:schemas:core:2.0:User"],
-      id: "juan+ssotest12.06.21.5@calm.com",
-      userName: "juan+ssotest12.06.21.5@calm.com",
-      name: {
-        givenName: "Another",
-        middleName: "",
-        familyName: "User",
-      },
-      active: true,
-      groups: [],
-      meta: {
-        resourceType: "User",
-      },
-    };
-    return res.status(200).json(json);
+    return res.status(404).send();
   }
 
   if (
     query?.filter &&
     query.filter !== 'userName eq "juan+ssotest12.06.21.5@calm.com"'
   ) {
-    return res.status(404).send();
+    const json = {
+      schemas: ["urn:ietf:params:scim:api:messages:2.0:ListResponse"],
+      totalResults: 10,
+      startIndex: 1,
+      itemsPerPage: 0,
+      Resources: [],
+    };
+
+    return res.status(200).json(json);
   }
 
   const json = {
     schemas: ["urn:ietf:params:scim:api:messages:2.0:ListResponse"],
-    totalResults: 10,
+    totalResults: 0,
     startIndex: 1,
     itemsPerPage: 0,
-    Resources: [
-      {
-        schemas: ["urn:ietf:params:scim:schemas:core:2.0:User"],
-        id: "juan+ssotest12.06.21.5@calm.com",
-        userName: "juan+ssotest12.06.21.5@calm.com",
-        name: {
-          givenName: "Another",
-          middleName: "",
-          familyName: "User",
-        },
-        active: true,
-        groups: [],
-        meta: {
-          resourceType: "User",
-        },
-      },
-    ],
+    Resources: [user],
   };
 
   return res.status(200).json(json);
@@ -83,22 +81,7 @@ app.put("/Users/:userId", (req, res, next) => {
   console.log("body", body);
   console.log("query", query);
   console.log("params", params);
-  const json = {
-    schemas: ["urn:ietf:params:scim:schemas:core:2.0:User"],
-    id: "juan+ssotest12.06.21.5@calm.com",
-    userName: "juan+ssotest12.06.21.5@calm.com",
-    name: {
-      givenName: "Another",
-      middleName: "",
-      familyName: "User",
-    },
-    active: true,
-    groups: [],
-    meta: {
-      resourceType: "User",
-    },
-  };
-  res.status(200).json(json);
+  res.status(200).json(user);
 });
 
 app.put("/Users", (req, res, next) => {
@@ -107,22 +90,7 @@ app.put("/Users", (req, res, next) => {
   console.log("path", path);
   console.log("body", body);
   console.log("query", query);
-  const json = {
-    schemas: ["urn:ietf:params:scim:schemas:core:2.0:User"],
-    id: "juan+ssotest12.06.21.5@calm.com",
-    userName: "juan+ssotest12.06.21.5@calm.com",
-    name: {
-      givenName: "Another",
-      middleName: "",
-      familyName: "User",
-    },
-    active: true,
-    groups: [],
-    meta: {
-      resourceType: "User",
-    },
-  };
-  res.status(200).json(json);
+  res.status(200).json(user);
 });
 
 // app.get("/*", function (req, res, next) {
