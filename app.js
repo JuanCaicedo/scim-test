@@ -54,7 +54,7 @@ app.get(["/Users", "/Users/:userId"], (req, res) => {
   ) {
     const json = {
       schemas: ["urn:ietf:params:scim:api:messages:2.0:ListResponse"],
-      totalResults: 10,
+      totalResults: 0,
       startIndex: 1,
       itemsPerPage: 0,
       Resources: [],
@@ -65,7 +65,7 @@ app.get(["/Users", "/Users/:userId"], (req, res) => {
 
   const json = {
     schemas: ["urn:ietf:params:scim:api:messages:2.0:ListResponse"],
-    totalResults: 0,
+    totalResults: 10,
     startIndex: 1,
     itemsPerPage: 0,
     Resources: [user],
